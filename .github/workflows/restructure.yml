@@ -1,0 +1,32 @@
+# One-time helper: unpacks _payload.tar.gz into the repository root, removes the
+# old zip and the payload, and commits the result. Delete this file afterwards.
+name: restructure
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "_payload.tar.gz"
+
+permissions:
+  contents: write
+
+jobs:
+  restructure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unpack project into the repository root
+        run: |
+          set -euo pipefail
+          test -f _payload.tar.gz
+          tar -xzf _payload.tar.gz
+          git rm -q --ignore-unmatch DagShield-Final.zip _payload.tar.gz
+          rm -f _payload.tar.gz
+          git add -A
+          git status --short | head -n 20
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Unpack project from zip, add README with screenshots, move team papers to docs/internal"
+          git push
