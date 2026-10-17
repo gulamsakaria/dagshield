@@ -1,0 +1,29 @@
+# secrets and local state - never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.db
+*.sqlite3
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# node
+node_modules/
+frontend/dist/
+
+# os / editor
+.DS_Store
+.idea/
+.vscode/
+
+# hosting
+ftp.local.txt
+*.local.txt

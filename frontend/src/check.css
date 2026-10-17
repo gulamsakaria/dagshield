@@ -1,0 +1,108 @@
+/* Public "Check Land" page. The result card reuses .verdict-card from officer.css. */
+.check {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.check-top h1 {
+  margin-bottom: 6px;
+}
+.check-top p {
+  margin: 0 0 20px;
+}
+.check-form {
+  padding: 24px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 24px;
+}
+.check-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 18px;
+  margin-bottom: 18px;
+}
+.check-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.check-grid input,
+.check-grid select {
+  width: 100%;
+  min-width: 0;
+  font-weight: 400;
+}
+.check-wide {
+  grid-column: 1 / -1;
+}
+.check-form .btn {
+  padding: 11px 28px;
+  font-size: 1rem;
+}
+.check-form .note {
+  margin: 0 0 16px;
+}
+.check .verdict-card {
+  margin-bottom: 18px;
+}
+.check-history {
+  padding: 16px 20px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+.check-history h3 {
+  margin-bottom: 8px;
+}
+.check-history ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.check-disclaimer {
+  margin: 22px 0 8px;
+  padding: 12px 16px;
+  background: #f6faf7;
+  border: 1px dashed var(--line-strong);
+  border-radius: 12px;
+  font-size: 0.92rem;
+  max-width: none;
+}
+.check-back {
+  margin: 0;
+}
+.public-link {
+  display: block;
+  text-align: center;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #fff6d6;
+  border: 1px solid #f0c64d;
+  color: #5a3d00;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 150ms ease;
+}
+.public-link:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 640px) {
+  .check-grid {
+    grid-template-columns: 1fr;
+  }
+  .check-form {
+    padding: 18px;
+  }
+  .check .verdict-card {
+    padding: 20px;
+  }
+  .check .verdict-mark {
+    width: 64px;
+    height: 64px;
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "scenario_id": "clean-transfer",
+  "name": "Clean transfer",
+  "name_bn": "পরিষ্কার হস্তান্তর",
+  "description": "Entitlement 12, one outgoing transfer of 5, matching mutation. No alert is expected (balance 7).",
+  "description_bn": "প্রাপ্য ১২, একটি হস্তান্তর ৫, মিলে যাওয়া মিউটেশন। কোনো সতর্কতা আশা করা হয় না (ব্যালান্স ৭)।",
+  "case_type": "clean",
+  "source_records": [
+    {
+      "id": "SRC-S01-REG",
+      "source_type": "synthetic_sub_registry",
+      "label": "Synthetic sub-registry export (team-created)",
+      "data_version": "v1",
+      "notes": ""
+    },
+    {
+      "id": "SRC-S01-MUT",
+      "source_type": "synthetic_ac_land",
+      "label": "Synthetic AC Land mutation export (team-created)",
+      "data_version": "v1",
+      "notes": ""
+    }
+  ],
+  "parcels": [
+    {
+      "id": "P-S01-A",
+      "label": "Synthetic parcel 01-A",
+      "survey_type": "RS",
+      "dag_no": "101",
+      "area_decimal": 12,
+      "status": "active"
+    }
+  ],
+  "lineage": [],
+  "entitlements": [
+    {
+      "id": "S01-E1",
+      "parcel_id": "P-S01-A",
+      "owner": "OWNER-A",
+      "opening_area": 12,
+      "effective_date": "2020-01-01",
+      "source_id": "SRC-S01-REG",
+      "confidence": 1.0
+    }
+  ],
+  "deeds": [
+    {
+      "id": "DEED-S01-1",
+      "parcel_id": "P-S01-A",
+      "registration_date": "2024-03-10",
+      "status": "registered",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-B",
+      "area_decimal": 5,
+      "source_id": "SRC-S01-REG"
+    }
+  ],
+  "transfers": [
+    {
+      "id": "S01-T1",
+      "deed_id": "DEED-S01-1",
+      "parcel_id": "P-S01-A",
+      "portion_key": "PK-S01-1",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-B",
+      "area": 5,
+      "event_date": "2024-03-10",
+      "status": "active",
+      "cancelled_on": null
+    }
+  ],
+  "mutations": [
+    {
+      "id": "S01-M1",
+      "transfer_id": "S01-T1",
+      "parcel_id": "P-S01-A",
+      "date": "2024-03-10",
+      "status": "recorded",
+      "area": 5,
+      "recipient": "BUYER-B",
+      "source_id": "SRC-S01-MUT"
+    }
+  ],
+  "expected_alerts": []
+}

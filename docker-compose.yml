@@ -1,0 +1,72 @@
+# One command for everything:
+#   python scripts/gen_demo_key.py     (creates .env with a demo key and a random DB password)
+#   docker compose up --build
+# Web UI: http://localhost:8080   API docs: http://localhost:8000/docs
+# Ports are bound to 127.0.0.1 only, so the demo is not exposed to your network.
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: dagshield
+      POSTGRES_USER: dagshield
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Run python scripts/gen_demo_key.py first}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dagshield -d dagshield"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    security_opt:
+      - no-new-privileges:true
+
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql+psycopg://dagshield:${POSTGRES_PASSWORD}@db:5432/dagshield
+      DAGSHIELD_SIGNING_KEY: ${DAGSHIELD_SIGNING_KEY:?Run python scripts/gen_demo_key.py first}
+      DAGSHIELD_ADMIN_TOKEN: ${DAGSHIELD_ADMIN_TOKEN:-}
+      DAGSHIELD_OFFICER_USER: ${DAGSHIELD_OFFICER_USER:-}
+      DAGSHIELD_OFFICER_PASSWORD: ${DAGSHIELD_OFFICER_PASSWORD:-}
+      DAGSHIELD_JUDGE_LOGIN: ${DAGSHIELD_JUDGE_LOGIN:-false}
+      DAGSHIELD_PUBLIC_BASE_URL: ${DAGSHIELD_PUBLIC_BASE_URL:-http://localhost:8080}
+      DAGSHIELD_ALLOWED_ORIGINS: ${DAGSHIELD_ALLOWED_ORIGINS:-http://localhost:8080}
+      DAGSHIELD_RATE_LIMIT_PER_MIN: ${DAGSHIELD_RATE_LIMIT_PER_MIN:-120}
+      DAGSHIELD_ENABLE_DOCS: ${DAGSHIELD_ENABLE_DOCS:-true}
+      DAGSHIELD_AREA_TOLERANCE: ${DAGSHIELD_AREA_TOLERANCE:-0}
+      DAGSHIELD_LINEAGE_CONFIDENCE_MIN: ${DAGSHIELD_LINEAGE_CONFIDENCE_MIN:-0.8}
+      DAGSHIELD_ENABLE_R5: ${DAGSHIELD_ENABLE_R5:-true}
+      DAGSHIELD_R5_WINDOW_DAYS: ${DAGSHIELD_R5_WINDOW_DAYS:-30}
+      DAGSHIELD_R5_MIN_EVENTS: ${DAGSHIELD_R5_MIN_EVENTS:-3}
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8000:8000"
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+  web:
+    build:
+      context: ./frontend
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - "127.0.0.1:8080:8080"
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  pgdata:

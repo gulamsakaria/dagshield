@@ -1,0 +1,63 @@
+{
+  "scenario_id": "ambiguous-lineage",
+  "name": "Ambiguous lineage (R4)",
+  "name_bn": "অস্পষ্ট বংশানুক্রম (R4)",
+  "description": "A low-confidence parent-child link. R4 raises a review alert and does not merge anything.",
+  "description_bn": "কম নির্ভরযোগ্যতার পিতা-সন্তান সংযোগ। R4 পর্যালোচনার সতর্কতা দেয়, কিছু স্বয়ংক্রিয়ভাবে যুক্ত করে না।",
+  "case_type": "ambiguous",
+  "source_records": [
+    {
+      "id": "SRC-S06-REG",
+      "source_type": "synthetic_sub_registry",
+      "label": "Synthetic sub-registry export (team-created)",
+      "data_version": "v1",
+      "notes": ""
+    },
+    {
+      "id": "SRC-S06-MUT",
+      "source_type": "synthetic_ac_land",
+      "label": "Synthetic AC Land mutation export (team-created)",
+      "data_version": "v1",
+      "notes": ""
+    }
+  ],
+  "parcels": [
+    {
+      "id": "P-S06-A",
+      "label": "Synthetic parcel 06-A",
+      "survey_type": "SA",
+      "dag_no": "106",
+      "area_decimal": 20,
+      "status": "active"
+    },
+    {
+      "id": "P-S06-B",
+      "label": "Synthetic parcel 06-B",
+      "survey_type": "RS",
+      "dag_no": "106/1",
+      "area_decimal": 8,
+      "status": "active"
+    }
+  ],
+  "lineage": [
+    {
+      "id": "S06-L1",
+      "parent_id": "P-S06-A",
+      "child_id": "P-S06-B",
+      "relationship": "split",
+      "confidence": 0.4,
+      "source_id": "SRC-S06-REG"
+    }
+  ],
+  "entitlements": [],
+  "deeds": [],
+  "transfers": [],
+  "mutations": [],
+  "expected_alerts": [
+    {
+      "rule_id": "R4",
+      "key": "lineage:S06-L1",
+      "outcome": "alert"
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "scenario_id": "child-area-anomaly",
+  "name": "Child-area anomaly (R4)",
+  "name_bn": "সন্তান-আয়তনের অসঙ্গতি (R4)",
+  "description": "Parent area 20, child areas total 22, tolerance 0. R4 shows a difference of 2.",
+  "description_bn": "পিতা-পার্সেল ২০, সন্তান-পার্সেল মোট ২২, সহনসীমা ০। R4 পার্থক্য ২ দেখায়।",
+  "case_type": "conflict",
+  "source_records": [
+    {
+      "id": "SRC-S07-REG",
+      "source_type": "synthetic_sub_registry",
+      "label": "Synthetic sub-registry export (team-created)",
+      "data_version": "v1",
+      "notes": ""
+    },
+    {
+      "id": "SRC-S07-MUT",
+      "source_type": "synthetic_ac_land",
+      "label": "Synthetic AC Land mutation export (team-created)",
+      "data_version": "v1",
+      "notes": ""
+    }
+  ],
+  "parcels": [
+    {
+      "id": "P-S07-A",
+      "label": "Synthetic parcel 07-A",
+      "survey_type": "SA",
+      "dag_no": "107",
+      "area_decimal": 20,
+      "status": "active"
+    },
+    {
+      "id": "P-S07-B",
+      "label": "Synthetic parcel 07-B",
+      "survey_type": "RS",
+      "dag_no": "107/1",
+      "area_decimal": 12,
+      "status": "active"
+    },
+    {
+      "id": "P-S07-C",
+      "label": "Synthetic parcel 07-C",
+      "survey_type": "RS",
+      "dag_no": "107/2",
+      "area_decimal": 10,
+      "status": "active"
+    }
+  ],
+  "lineage": [
+    {
+      "id": "S07-L1",
+      "parent_id": "P-S07-A",
+      "child_id": "P-S07-B",
+      "relationship": "split",
+      "confidence": 0.95,
+      "source_id": "SRC-S07-REG"
+    },
+    {
+      "id": "S07-L2",
+      "parent_id": "P-S07-A",
+      "child_id": "P-S07-C",
+      "relationship": "split",
+      "confidence": 0.95,
+      "source_id": "SRC-S07-REG"
+    }
+  ],
+  "entitlements": [],
+  "deeds": [],
+  "transfers": [],
+  "mutations": [],
+  "expected_alerts": [
+    {
+      "rule_id": "R4",
+      "key": "area:P-S07-A",
+      "outcome": "alert"
+    }
+  ]
+}

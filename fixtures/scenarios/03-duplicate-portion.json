@@ -1,0 +1,123 @@
+{
+  "scenario_id": "duplicate-portion",
+  "name": "Duplicate claim (R1)",
+  "name_bn": "একই অংশে দ্বৈত দাবি (R1)",
+  "description": "The same portion is transferred to two different buyers. Both mutations exist.",
+  "description_bn": "একই অংশ দুজন ভিন্ন ক্রেতাকে হস্তান্তর। দুটি মিউটেশনই আছে।",
+  "case_type": "conflict",
+  "source_records": [
+    {
+      "id": "SRC-S03-REG",
+      "source_type": "synthetic_sub_registry",
+      "label": "Synthetic sub-registry export (team-created)",
+      "data_version": "v1",
+      "notes": ""
+    },
+    {
+      "id": "SRC-S03-MUT",
+      "source_type": "synthetic_ac_land",
+      "label": "Synthetic AC Land mutation export (team-created)",
+      "data_version": "v1",
+      "notes": ""
+    }
+  ],
+  "parcels": [
+    {
+      "id": "P-S03-A",
+      "label": "Synthetic parcel 03-A",
+      "survey_type": "RS",
+      "dag_no": "103",
+      "area_decimal": 12,
+      "status": "active"
+    }
+  ],
+  "lineage": [],
+  "entitlements": [
+    {
+      "id": "S03-E1",
+      "parcel_id": "P-S03-A",
+      "owner": "OWNER-A",
+      "opening_area": 12,
+      "effective_date": "2020-01-01",
+      "source_id": "SRC-S03-REG",
+      "confidence": 1.0
+    }
+  ],
+  "deeds": [
+    {
+      "id": "DEED-S03-1",
+      "parcel_id": "P-S03-A",
+      "registration_date": "2024-02-01",
+      "status": "registered",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-B",
+      "area_decimal": 4,
+      "source_id": "SRC-S03-REG"
+    },
+    {
+      "id": "DEED-S03-2",
+      "parcel_id": "P-S03-A",
+      "registration_date": "2024-02-20",
+      "status": "registered",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-C",
+      "area_decimal": 4,
+      "source_id": "SRC-S03-REG"
+    }
+  ],
+  "transfers": [
+    {
+      "id": "S03-T1",
+      "deed_id": "DEED-S03-1",
+      "parcel_id": "P-S03-A",
+      "portion_key": "PK-S03-1",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-B",
+      "area": 4,
+      "event_date": "2024-02-01",
+      "status": "active",
+      "cancelled_on": null
+    },
+    {
+      "id": "S03-T2",
+      "deed_id": "DEED-S03-2",
+      "parcel_id": "P-S03-A",
+      "portion_key": "PK-S03-1",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-C",
+      "area": 4,
+      "event_date": "2024-02-20",
+      "status": "active",
+      "cancelled_on": null
+    }
+  ],
+  "mutations": [
+    {
+      "id": "S03-M1",
+      "transfer_id": "S03-T1",
+      "parcel_id": "P-S03-A",
+      "date": "2024-02-01",
+      "status": "recorded",
+      "area": 4,
+      "recipient": "BUYER-B",
+      "source_id": "SRC-S03-MUT"
+    },
+    {
+      "id": "S03-M2",
+      "transfer_id": "S03-T2",
+      "parcel_id": "P-S03-A",
+      "date": "2024-02-20",
+      "status": "recorded",
+      "area": 4,
+      "recipient": "BUYER-C",
+      "source_id": "SRC-S03-MUT"
+    }
+  ],
+  "expected_alerts": [
+    {
+      "rule_id": "R1",
+      "key": "S03-T1|S03-T2",
+      "outcome": "alert"
+    }
+  ]
+}

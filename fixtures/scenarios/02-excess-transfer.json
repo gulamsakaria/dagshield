@@ -1,0 +1,123 @@
+{
+  "scenario_id": "excess-transfer",
+  "name": "Oversold share (R2)",
+  "name_bn": "প্রাপ্যের বেশি বিক্রি (R2)",
+  "description": "Entitlement 12, transfers of 9 then 5. The second transfer exceeds the 3 available by 2.",
+  "description_bn": "প্রাপ্য ১২, হস্তান্তর ৯ তারপর ৫। দ্বিতীয় হস্তান্তর প্রাপ্য ৩-এর চেয়ে ২ বেশি।",
+  "case_type": "conflict",
+  "source_records": [
+    {
+      "id": "SRC-S02-REG",
+      "source_type": "synthetic_sub_registry",
+      "label": "Synthetic sub-registry export (team-created)",
+      "data_version": "v1",
+      "notes": ""
+    },
+    {
+      "id": "SRC-S02-MUT",
+      "source_type": "synthetic_ac_land",
+      "label": "Synthetic AC Land mutation export (team-created)",
+      "data_version": "v1",
+      "notes": ""
+    }
+  ],
+  "parcels": [
+    {
+      "id": "P-S02-A",
+      "label": "Synthetic parcel 02-A",
+      "survey_type": "RS",
+      "dag_no": "102",
+      "area_decimal": 12,
+      "status": "active"
+    }
+  ],
+  "lineage": [],
+  "entitlements": [
+    {
+      "id": "S02-E1",
+      "parcel_id": "P-S02-A",
+      "owner": "OWNER-A",
+      "opening_area": 12,
+      "effective_date": "2020-01-01",
+      "source_id": "SRC-S02-REG",
+      "confidence": 1.0
+    }
+  ],
+  "deeds": [
+    {
+      "id": "DEED-S02-1",
+      "parcel_id": "P-S02-A",
+      "registration_date": "2024-02-01",
+      "status": "registered",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-B",
+      "area_decimal": 9,
+      "source_id": "SRC-S02-REG"
+    },
+    {
+      "id": "DEED-S02-2",
+      "parcel_id": "P-S02-A",
+      "registration_date": "2024-03-15",
+      "status": "registered",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-C",
+      "area_decimal": 5,
+      "source_id": "SRC-S02-REG"
+    }
+  ],
+  "transfers": [
+    {
+      "id": "S02-T1",
+      "deed_id": "DEED-S02-1",
+      "parcel_id": "P-S02-A",
+      "portion_key": "PK-S02-1",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-B",
+      "area": 9,
+      "event_date": "2024-02-01",
+      "status": "active",
+      "cancelled_on": null
+    },
+    {
+      "id": "S02-T2",
+      "deed_id": "DEED-S02-2",
+      "parcel_id": "P-S02-A",
+      "portion_key": "PK-S02-2",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-C",
+      "area": 5,
+      "event_date": "2024-03-15",
+      "status": "active",
+      "cancelled_on": null
+    }
+  ],
+  "mutations": [
+    {
+      "id": "S02-M1",
+      "transfer_id": "S02-T1",
+      "parcel_id": "P-S02-A",
+      "date": "2024-02-01",
+      "status": "recorded",
+      "area": 9,
+      "recipient": "BUYER-B",
+      "source_id": "SRC-S02-MUT"
+    },
+    {
+      "id": "S02-M2",
+      "transfer_id": "S02-T2",
+      "parcel_id": "P-S02-A",
+      "date": "2024-03-15",
+      "status": "recorded",
+      "area": 5,
+      "recipient": "BUYER-C",
+      "source_id": "SRC-S02-MUT"
+    }
+  ],
+  "expected_alerts": [
+    {
+      "rule_id": "R2",
+      "key": "S02-T2",
+      "outcome": "alert"
+    }
+  ]
+}

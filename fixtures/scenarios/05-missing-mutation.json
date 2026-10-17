@@ -1,0 +1,80 @@
+{
+  "scenario_id": "missing-mutation",
+  "name": "Missing mutation (R3)",
+  "name_bn": "মিউটেশন পাওয়া যায়নি (R3)",
+  "description": "A registered deed has no linked mutation entry in the supplied dataset.",
+  "description_bn": "একটি নিবন্ধিত দলিলের কোনো সংযুক্ত মিউটেশন এন্ট্রি সরবরাহকৃত ডেটাসেটে নেই।",
+  "case_type": "conflict",
+  "source_records": [
+    {
+      "id": "SRC-S05-REG",
+      "source_type": "synthetic_sub_registry",
+      "label": "Synthetic sub-registry export (team-created)",
+      "data_version": "v1",
+      "notes": ""
+    },
+    {
+      "id": "SRC-S05-MUT",
+      "source_type": "synthetic_ac_land",
+      "label": "Synthetic AC Land mutation export (team-created)",
+      "data_version": "v1",
+      "notes": ""
+    }
+  ],
+  "parcels": [
+    {
+      "id": "P-S05-A",
+      "label": "Synthetic parcel 05-A",
+      "survey_type": "RS",
+      "dag_no": "105",
+      "area_decimal": 12,
+      "status": "active"
+    }
+  ],
+  "lineage": [],
+  "entitlements": [
+    {
+      "id": "S05-E1",
+      "parcel_id": "P-S05-A",
+      "owner": "OWNER-A",
+      "opening_area": 12,
+      "effective_date": "2020-01-01",
+      "source_id": "SRC-S05-REG",
+      "confidence": 1.0
+    }
+  ],
+  "deeds": [
+    {
+      "id": "DEED-S05-1",
+      "parcel_id": "P-S05-A",
+      "registration_date": "2024-04-05",
+      "status": "registered",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-B",
+      "area_decimal": 5,
+      "source_id": "SRC-S05-REG"
+    }
+  ],
+  "transfers": [
+    {
+      "id": "S05-T1",
+      "deed_id": "DEED-S05-1",
+      "parcel_id": "P-S05-A",
+      "portion_key": "PK-S05-1",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-B",
+      "area": 5,
+      "event_date": "2024-04-05",
+      "status": "active",
+      "cancelled_on": null
+    }
+  ],
+  "mutations": [],
+  "expected_alerts": [
+    {
+      "rule_id": "R3",
+      "key": "S05-T1",
+      "outcome": "alert"
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "scenario_id": "cancelled-duplicate",
+  "name": "Cancelled duplicate",
+  "name_bn": "বাতিল হওয়া দ্বৈত দাবি",
+  "description": "Same portion, but the second transfer was cancelled. No R1 alert is expected.",
+  "description_bn": "একই অংশ, কিন্তু দ্বিতীয় হস্তান্তর বাতিল। R1 সতর্কতা আশা করা হয় না।",
+  "case_type": "clean",
+  "source_records": [
+    {
+      "id": "SRC-S04-REG",
+      "source_type": "synthetic_sub_registry",
+      "label": "Synthetic sub-registry export (team-created)",
+      "data_version": "v1",
+      "notes": ""
+    },
+    {
+      "id": "SRC-S04-MUT",
+      "source_type": "synthetic_ac_land",
+      "label": "Synthetic AC Land mutation export (team-created)",
+      "data_version": "v1",
+      "notes": ""
+    }
+  ],
+  "parcels": [
+    {
+      "id": "P-S04-A",
+      "label": "Synthetic parcel 04-A",
+      "survey_type": "RS",
+      "dag_no": "104",
+      "area_decimal": 12,
+      "status": "active"
+    }
+  ],
+  "lineage": [],
+  "entitlements": [
+    {
+      "id": "S04-E1",
+      "parcel_id": "P-S04-A",
+      "owner": "OWNER-A",
+      "opening_area": 12,
+      "effective_date": "2020-01-01",
+      "source_id": "SRC-S04-REG",
+      "confidence": 1.0
+    }
+  ],
+  "deeds": [
+    {
+      "id": "DEED-S04-1",
+      "parcel_id": "P-S04-A",
+      "registration_date": "2024-02-01",
+      "status": "registered",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-B",
+      "area_decimal": 4,
+      "source_id": "SRC-S04-REG"
+    },
+    {
+      "id": "DEED-S04-2",
+      "parcel_id": "P-S04-A",
+      "registration_date": "2024-02-20",
+      "status": "cancelled",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-C",
+      "area_decimal": 4,
+      "source_id": "SRC-S04-REG"
+    }
+  ],
+  "transfers": [
+    {
+      "id": "S04-T1",
+      "deed_id": "DEED-S04-1",
+      "parcel_id": "P-S04-A",
+      "portion_key": "PK-S04-1",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-B",
+      "area": 4,
+      "event_date": "2024-02-01",
+      "status": "active",
+      "cancelled_on": null
+    },
+    {
+      "id": "S04-T2",
+      "deed_id": "DEED-S04-2",
+      "parcel_id": "P-S04-A",
+      "portion_key": "PK-S04-1",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-C",
+      "area": 4,
+      "event_date": "2024-02-20",
+      "status": "cancelled",
+      "cancelled_on": "2024-03-01"
+    }
+  ],
+  "mutations": [
+    {
+      "id": "S04-M1",
+      "transfer_id": "S04-T1",
+      "parcel_id": "P-S04-A",
+      "date": "2024-02-01",
+      "status": "recorded",
+      "area": 4,
+      "recipient": "BUYER-B",
+      "source_id": "SRC-S04-MUT"
+    }
+  ],
+  "expected_alerts": []
+}

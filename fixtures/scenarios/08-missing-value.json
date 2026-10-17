@@ -1,0 +1,96 @@
+{
+  "scenario_id": "missing-value",
+  "name": "Missing value",
+  "name_bn": "অনুপস্থিত মান",
+  "description": "The transfer area is missing. Rules answer 'insufficient data' and never treat it as zero.",
+  "description_bn": "হস্তান্তরের আয়তন অনুপস্থিত। নিয়মগুলো 'অপর্যাপ্ত তথ্য' বলে, কখনো শূন্য ধরে না।",
+  "case_type": "ambiguous",
+  "source_records": [
+    {
+      "id": "SRC-S08-REG",
+      "source_type": "synthetic_sub_registry",
+      "label": "Synthetic sub-registry export (team-created)",
+      "data_version": "v1",
+      "notes": ""
+    },
+    {
+      "id": "SRC-S08-MUT",
+      "source_type": "synthetic_ac_land",
+      "label": "Synthetic AC Land mutation export (team-created)",
+      "data_version": "v1",
+      "notes": ""
+    }
+  ],
+  "parcels": [
+    {
+      "id": "P-S08-A",
+      "label": "Synthetic parcel 08-A",
+      "survey_type": "RS",
+      "dag_no": "108",
+      "area_decimal": 12,
+      "status": "active"
+    }
+  ],
+  "lineage": [],
+  "entitlements": [
+    {
+      "id": "S08-E1",
+      "parcel_id": "P-S08-A",
+      "owner": "OWNER-A",
+      "opening_area": 12,
+      "effective_date": "2020-01-01",
+      "source_id": "SRC-S08-REG",
+      "confidence": 1.0
+    }
+  ],
+  "deeds": [
+    {
+      "id": "DEED-S08-1",
+      "parcel_id": "P-S08-A",
+      "registration_date": "2024-05-02",
+      "status": "registered",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-B",
+      "area_decimal": null,
+      "source_id": "SRC-S08-REG"
+    }
+  ],
+  "transfers": [
+    {
+      "id": "S08-T1",
+      "deed_id": "DEED-S08-1",
+      "parcel_id": "P-S08-A",
+      "portion_key": "PK-S08-1",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-B",
+      "area": null,
+      "event_date": "2024-05-02",
+      "status": "active",
+      "cancelled_on": null
+    }
+  ],
+  "mutations": [
+    {
+      "id": "S08-M1",
+      "transfer_id": "S08-T1",
+      "parcel_id": "P-S08-A",
+      "date": "2024-05-02",
+      "status": "recorded",
+      "area": 6,
+      "recipient": "BUYER-B",
+      "source_id": "SRC-S08-MUT"
+    }
+  ],
+  "expected_alerts": [
+    {
+      "rule_id": "R2",
+      "key": "S08-T1",
+      "outcome": "insufficient_data"
+    },
+    {
+      "rule_id": "R3",
+      "key": "S08-T1",
+      "outcome": "insufficient_data"
+    }
+  ]
+}

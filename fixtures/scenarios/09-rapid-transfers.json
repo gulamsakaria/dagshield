@@ -1,0 +1,155 @@
+{
+  "scenario_id": "rapid-transfers",
+  "name": "Rapid transfers (R5, heuristic)",
+  "name_bn": "দ্রুত হস্তান্তর (R5, অনুমানভিত্তিক)",
+  "description": "Three active transfers within 30 days. Heuristic alert only.",
+  "description_bn": "৩০ দিনের মধ্যে তিনটি সক্রিয় হস্তান্তর। শুধু অনুমানভিত্তিক সতর্কতা।",
+  "case_type": "heuristic",
+  "source_records": [
+    {
+      "id": "SRC-S09-REG",
+      "source_type": "synthetic_sub_registry",
+      "label": "Synthetic sub-registry export (team-created)",
+      "data_version": "v1",
+      "notes": ""
+    },
+    {
+      "id": "SRC-S09-MUT",
+      "source_type": "synthetic_ac_land",
+      "label": "Synthetic AC Land mutation export (team-created)",
+      "data_version": "v1",
+      "notes": ""
+    }
+  ],
+  "parcels": [
+    {
+      "id": "P-S09-A",
+      "label": "Synthetic parcel 09-A",
+      "survey_type": "RS",
+      "dag_no": "109",
+      "area_decimal": 12,
+      "status": "active"
+    }
+  ],
+  "lineage": [],
+  "entitlements": [
+    {
+      "id": "S09-E1",
+      "parcel_id": "P-S09-A",
+      "owner": "OWNER-A",
+      "opening_area": 12,
+      "effective_date": "2020-01-01",
+      "source_id": "SRC-S09-REG",
+      "confidence": 1.0
+    }
+  ],
+  "deeds": [
+    {
+      "id": "DEED-S09-1",
+      "parcel_id": "P-S09-A",
+      "registration_date": "2024-05-01",
+      "status": "registered",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-B",
+      "area_decimal": 2,
+      "source_id": "SRC-S09-REG"
+    },
+    {
+      "id": "DEED-S09-2",
+      "parcel_id": "P-S09-A",
+      "registration_date": "2024-05-10",
+      "status": "registered",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-C",
+      "area_decimal": 2,
+      "source_id": "SRC-S09-REG"
+    },
+    {
+      "id": "DEED-S09-3",
+      "parcel_id": "P-S09-A",
+      "registration_date": "2024-05-20",
+      "status": "registered",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-D",
+      "area_decimal": 2,
+      "source_id": "SRC-S09-REG"
+    }
+  ],
+  "transfers": [
+    {
+      "id": "S09-T1",
+      "deed_id": "DEED-S09-1",
+      "parcel_id": "P-S09-A",
+      "portion_key": "PK-S09-1",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-B",
+      "area": 2,
+      "event_date": "2024-05-01",
+      "status": "active",
+      "cancelled_on": null
+    },
+    {
+      "id": "S09-T2",
+      "deed_id": "DEED-S09-2",
+      "parcel_id": "P-S09-A",
+      "portion_key": "PK-S09-2",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-C",
+      "area": 2,
+      "event_date": "2024-05-10",
+      "status": "active",
+      "cancelled_on": null
+    },
+    {
+      "id": "S09-T3",
+      "deed_id": "DEED-S09-3",
+      "parcel_id": "P-S09-A",
+      "portion_key": "PK-S09-3",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-D",
+      "area": 2,
+      "event_date": "2024-05-20",
+      "status": "active",
+      "cancelled_on": null
+    }
+  ],
+  "mutations": [
+    {
+      "id": "S09-M1",
+      "transfer_id": "S09-T1",
+      "parcel_id": "P-S09-A",
+      "date": "2024-05-01",
+      "status": "recorded",
+      "area": 2,
+      "recipient": "BUYER-B",
+      "source_id": "SRC-S09-MUT"
+    },
+    {
+      "id": "S09-M2",
+      "transfer_id": "S09-T2",
+      "parcel_id": "P-S09-A",
+      "date": "2024-05-10",
+      "status": "recorded",
+      "area": 2,
+      "recipient": "BUYER-C",
+      "source_id": "SRC-S09-MUT"
+    },
+    {
+      "id": "S09-M3",
+      "transfer_id": "S09-T3",
+      "parcel_id": "P-S09-A",
+      "date": "2024-05-20",
+      "status": "recorded",
+      "area": 2,
+      "recipient": "BUYER-D",
+      "source_id": "SRC-S09-MUT"
+    }
+  ],
+  "expected_alerts": [
+    {
+      "rule_id": "R5",
+      "key": "P-S09-A:S09-T1",
+      "outcome": "alert"
+    }
+  ]
+}

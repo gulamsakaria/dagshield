@@ -1,0 +1,118 @@
+{
+  "scenario_id": "duplicate-and-gap",
+  "name": "Duplicate claim and missing mutation (R1 + R3)",
+  "name_bn": "দ্বৈত দাবি ও মিউটেশন ফাঁক (R1 + R3)",
+  "description": "Same portion sold twice, and the second deed has no mutation entry. Two linked alerts.",
+  "description_bn": "একই অংশ দুবার বিক্রি, আর দ্বিতীয় দলিলের মিউটেশন এন্ট্রি নেই। দুটি সংযুক্ত সতর্কতা।",
+  "case_type": "conflict",
+  "source_records": [
+    {
+      "id": "SRC-S10-REG",
+      "source_type": "synthetic_sub_registry",
+      "label": "Synthetic sub-registry export (team-created)",
+      "data_version": "v1",
+      "notes": ""
+    },
+    {
+      "id": "SRC-S10-MUT",
+      "source_type": "synthetic_ac_land",
+      "label": "Synthetic AC Land mutation export (team-created)",
+      "data_version": "v1",
+      "notes": ""
+    }
+  ],
+  "parcels": [
+    {
+      "id": "P-S10-A",
+      "label": "Synthetic parcel 10-A",
+      "survey_type": "RS",
+      "dag_no": "110",
+      "area_decimal": 12,
+      "status": "active"
+    }
+  ],
+  "lineage": [],
+  "entitlements": [
+    {
+      "id": "S10-E1",
+      "parcel_id": "P-S10-A",
+      "owner": "OWNER-A",
+      "opening_area": 12,
+      "effective_date": "2020-01-01",
+      "source_id": "SRC-S10-REG",
+      "confidence": 1.0
+    }
+  ],
+  "deeds": [
+    {
+      "id": "DEED-S10-1",
+      "parcel_id": "P-S10-A",
+      "registration_date": "2024-06-01",
+      "status": "registered",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-B",
+      "area_decimal": 4,
+      "source_id": "SRC-S10-REG"
+    },
+    {
+      "id": "DEED-S10-2",
+      "parcel_id": "P-S10-A",
+      "registration_date": "2024-06-25",
+      "status": "registered",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-C",
+      "area_decimal": 4,
+      "source_id": "SRC-S10-REG"
+    }
+  ],
+  "transfers": [
+    {
+      "id": "S10-T1",
+      "deed_id": "DEED-S10-1",
+      "parcel_id": "P-S10-A",
+      "portion_key": "PK-S10-1",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-B",
+      "area": 4,
+      "event_date": "2024-06-01",
+      "status": "active",
+      "cancelled_on": null
+    },
+    {
+      "id": "S10-T2",
+      "deed_id": "DEED-S10-2",
+      "parcel_id": "P-S10-A",
+      "portion_key": "PK-S10-1",
+      "seller": "OWNER-A",
+      "buyer": "BUYER-C",
+      "area": 4,
+      "event_date": "2024-06-25",
+      "status": "active",
+      "cancelled_on": null
+    }
+  ],
+  "mutations": [
+    {
+      "id": "S10-M1",
+      "transfer_id": "S10-T1",
+      "parcel_id": "P-S10-A",
+      "date": "2024-06-01",
+      "status": "recorded",
+      "area": 4,
+      "recipient": "BUYER-B",
+      "source_id": "SRC-S10-MUT"
+    }
+  ],
+  "expected_alerts": [
+    {
+      "rule_id": "R1",
+      "key": "S10-T1|S10-T2",
+      "outcome": "alert"
+    },
+    {
+      "rule_id": "R3",
+      "key": "S10-T2",
+      "outcome": "alert"
+    }
+  ]
+}
