@@ -56,4 +56,4 @@ _Open items for mentors, left blank on purpose: realistic integration points, co
 Synthetic data cannot prove readiness for real records. A deed forged at the source and signed passes the QR check, so R1 to R4 are the second line of defence.
 
 ## 8. Team and mentors
-Team stratifyX Global: Gulam Sakaria (Team Leader), Md Abdur Rahim. Faculty mentor: ______. Industry mentor: ______.
+Team stratifyX Global: Gulam Sakaria (Team Leader), Md Abdur Rahim. Faculty mentor: Nushrat Jahan Oyshi (Lecturer, CSE). Industry support mentor: Shafin Ahmed (CSE-TECH).
