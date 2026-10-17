@@ -328,7 +328,7 @@ git-ignored. Never commit them.
 | Document | What it covers |
 | --- | --- |
 | [`SECURITY.md`](SECURITY.md) | Security design, threats and known limits |
-| [`docs/concept-note-draft.md`](docs/concept-note-draft.md) · [`PDF`](docs/DagShield-Concept-Note.pdf) | The concept note |
+| [`docs/DagShield-Concept-Note.pdf`](docs/DagShield-Concept-Note.pdf) · [`draft text`](docs/concept-note-draft.md) | The concept note (3 pages) |
 | [`docs/demo-script.md`](docs/demo-script.md) | Step-by-step demo script |
 | [`docs/project-report-bn.md`](docs/project-report-bn.md) | Full project report, in Bangla |
 | [`docs/deploy-cpanel-bn.md`](docs/deploy-cpanel-bn.md) | Deploying on cPanel, in Bangla |
@@ -343,9 +343,30 @@ The look follows a calm green, white and card layout in the spirit of public-ser
 symbol, text or code. The shield logo, name and layout are our own. Fonts: IBM Plex Sans and Noto Sans Bengali, both under
 the SIL Open Font Licence 1.1 (see [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md)). The home-page map uses geoBoundaries (CC0).
 
+## AI tools used
+
+The hackathon rules ask for every AI tool to be listed, so here it is.
+
+- **Claude (Anthropic)** was used as a coding assistant during development: explaining the problem brief, drafting the first scaffold of the backend, tests, frontend, Docker files and documents, and later redesigning the web UI, building the officer portal, the public Check Land page and the cPanel hosting package.
+- The team ran, tested and reviewed the generated code. The automated tests in [`backend/tests/`](backend/tests) cover it, and both team members can explain every module.
+- **No AI model is used at run time.** The rules are deterministic, so identical input always gives identical output.
+
+Details: [`docs/ai-tool-disclosure.md`](docs/ai-tool-disclosure.md).
+
+## Development note
+
+DagShield was built locally by the team and then published here. This repository was created on 17 to 18 October 2026, so its commit history starts there; the history is kept as it happened.
+
 ## Team
 
-**Team stratifyX Global**: Gulam Sakaria (Team Leader) and Md Abdur Rahim.
+**Team stratifyX Global**
+
+| Role | Name |
+| --- | --- |
+| Team Leader (student) | Gulam Sakaria |
+| Team member (student) | Md Abdur Rahim |
+| Faculty mentor | Nushrat Jahan Oyshi, Lecturer, CSE |
+| Industry support mentor | Shafin Ahmed, CSE-TECH |
 
 ## License
 
